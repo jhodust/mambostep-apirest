@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.academia.mambostepapirest.dto.MensualidadDto;
 import com.academia.mambostepapirest.services.IMensualidadService;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping(value = "/mensualidad")
 public class MensualidadRestController {

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.academia.mambostepapirest.services.IPaqueteService;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping(value = "/paquetes")
 public class PaqueteRestController {

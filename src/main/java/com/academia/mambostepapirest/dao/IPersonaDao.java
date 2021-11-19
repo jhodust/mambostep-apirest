@@ -6,4 +6,5 @@ import com.academia.mambostepapirest.entity.Persona;
 
 public interface IPersonaDao extends JpaRepository<Persona, Long> {
 
+	public Persona findByUsername(String username);
 }

@@ -11,7 +11,6 @@ import com.academia.mambostepapirest.services.IClaseService;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"})
 @RequestMapping(value = "/clases")
 public class ClaseRestController {
 

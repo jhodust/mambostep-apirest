@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.academia.mambostepapirest.services.IHorarioClaseService;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"})
 @RequestMapping(value = "/horario")
 public class HorarioClaseRestController {
 

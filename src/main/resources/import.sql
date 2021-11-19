@@ -53,10 +53,13 @@ insert into horario_clase(dia,hora_inicio, hora_fin,status,id_clase) values ('vi
 insert into horario_clase(dia,hora_inicio, hora_fin,status,id_clase) values ('viernes', '20:00','21:00', true, '20');
 
 
-insert into personas (nombre, identificacion, fecha_nacimiento, fecha_ingreso, instagram, telefono, nombre_acudiente, telefono_acudiente, parentesco_acudiente, id_sede) values ('JHOCEL SUESCUN', '109050', '1997-01-03','2019-07-08','@jhocelsuescun','320422','IRGEN TORRES','320312', 'madre','1'); 
+insert into personas (nombre, identificacion, fecha_nacimiento, fecha_ingreso, instagram, email, telefono, nombre_acudiente, telefono_acudiente, parentesco_acudiente, id_sede, enabled) values ('JHOCEL SUESCUN', '109050', '1997-01-03','2019-07-08','@jhocelsuescun','jhocel@gmail.com','320422','IRGEN TORRES','320312', 'madre','1',true);
+insert into personas (nombre, identificacion, fecha_nacimiento, fecha_ingreso, instagram, email, telefono, nombre_acudiente, telefono_acudiente, parentesco_acudiente, id_sede, enabled) values ('JUAN PEREZ', '1111', '1995-04-23','2021-05-08','@jUanperez4','juan_perez@gmail.com','31646','SOFIA DURAN','31646', 'tia','1',true);  
+insert into personas (nombre, identificacion, fecha_nacimiento, fecha_ingreso, instagram, email, telefono, id_sede, username, password, enabled ) values ('DANIEL RUDESS', '0000','1993-06-02','2019-09-15','@drudess','drudess@gmail.com','301467',  '1', 'drudess', '$2a$10$6vhsS.4nJcWdIESuwSzoQeOPNJIvkcoTQPV/qTHHVfSJQ3O/22mGq', true); 
 
 insert into mensualidades(nombre_paquete, fecha_inicio, fecha_fin, precio_paquete, precio_pactado, id_persona) values ('regular','2021-08-16','2021-08-25','90000','75000', '1');
 insert into mensualidades(nombre_paquete, fecha_inicio, fecha_fin, precio_paquete, precio_pactado, id_persona) values ('regular','2021-09-16','2021-09-25','90000','75000', '1');
+insert into mensualidades(nombre_paquete, fecha_inicio, fecha_fin, precio_paquete, precio_pactado, id_persona) values ('full pass','2021-07-16','2021-08-08','150000','120000', '2');
 
 
 insert into mensualidad_clases (id_clase, id_mensualidad) values ('8','1');
@@ -64,3 +67,13 @@ insert into mensualidad_clases (id_clase, id_mensualidad) values ('9','1');
 
 insert into mensualidad_clases (id_clase, id_mensualidad) values ('14','2');
 insert into mensualidad_clases (id_clase, id_mensualidad) values ('15','2');
+
+insert into mensualidad_clases (id_clase, id_mensualidad) values ('2','3');
+insert into mensualidad_clases (id_clase, id_mensualidad) values ('3','3');
+insert into mensualidad_clases (id_clase, id_mensualidad) values ('4','3');
+insert into mensualidad_clases (id_clase, id_mensualidad) values ('7','3');
+insert into mensualidad_clases (id_clase, id_mensualidad) values ('8','3');
+
+insert into roles (authority) values ('ROLE_ADMIN');
+
+insert into personas_roles (id_persona,id_role) values ('2','1');

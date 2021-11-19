@@ -19,7 +19,6 @@ import com.academia.mambostepapirest.dto.PersonaDto;
 import com.academia.mambostepapirest.services.IPersonaService;
 import com.academia.mambostepapirest.utils.ApiResponseDto;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping(value = "/personas")
 public class PersonaRestController {
