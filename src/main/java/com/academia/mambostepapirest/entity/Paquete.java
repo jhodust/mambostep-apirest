@@ -34,10 +34,19 @@ public class Paquete implements Serializable{
 	
 	private String nombre;
 	
-	@Column(name = "cant_clases_semana")
-	private String cantidadClasesSemana;
+	@Column(name = "cant_clases_estandar_semana")
+	private String cantidadClasesEstandarSemana;
 	
 	private String precio;
 	
+	@Column(name = "has_clases_crew_latina")
+	private boolean hasClasesCrewLatina;
+	
+	@Column(name = "has_clases_crew_urbana")
+	private boolean hasClasesCrewUrbano;
+	
 	private boolean status;
+	
+	@Column(name = "is_venta_publico")
+	private boolean isVentaPublico;
 }

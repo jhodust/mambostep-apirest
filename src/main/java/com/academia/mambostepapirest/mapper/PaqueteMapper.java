@@ -17,9 +17,12 @@ public class PaqueteMapper implements IPaqueteMapper {
 		PaqueteDto dto= new PaqueteDto();
 		dto.setId(paquete.getId());
 		dto.setNombre(paquete.getNombre());
-		dto.setCantidadClasesSemana(paquete.getCantidadClasesSemana());
+		dto.setCantidadClasesEstandarSemana(paquete.getCantidadClasesEstandarSemana());
 		dto.setPrecio(paquete.getPrecio());
 		dto.setStatus(paquete.isStatus());
+		dto.setVentaPublico(paquete.isVentaPublico());
+		dto.setHasClasesCrewLatina(paquete.isHasClasesCrewLatina());
+		dto.setHasClasesCrewUrbano(paquete.isHasClasesCrewUrbano());
 		return dto;
 	}
 
@@ -29,9 +32,13 @@ public class PaqueteMapper implements IPaqueteMapper {
 		Paquete paquete= new Paquete();
 		paquete.setId(paqueteDto.getId());
 		paquete.setNombre(paqueteDto.getNombre());
-		paquete.setCantidadClasesSemana(paqueteDto.getCantidadClasesSemana());
+		paquete.setCantidadClasesEstandarSemana(paqueteDto.getCantidadClasesEstandarSemana());
 		paquete.setPrecio(paqueteDto.getPrecio());
 		paquete.setStatus(paqueteDto.isStatus());
+		paquete.setVentaPublico(paqueteDto.isVentaPublico());
+		paquete.setHasClasesCrewLatina(paqueteDto.isHasClasesCrewLatina());
+		paquete.setHasClasesCrewUrbano(paqueteDto.isHasClasesCrewUrbano());
+		System.out.println("converttttttttttttttttt");
 		return paquete;
 	}
 

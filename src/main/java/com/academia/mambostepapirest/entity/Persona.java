@@ -73,6 +73,10 @@ public class Persona implements Serializable{
 	@JoinColumn(name="id_sede", foreignKey=@ForeignKey(name = "FK_persona_sede"))
 	private Sede sede;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_tipo_persona", foreignKey=@ForeignKey(name = "FK_persona_tipo"))
+	private TipoPersona tipoPersona;
+	
 	private String username;
 	
 	private String password;

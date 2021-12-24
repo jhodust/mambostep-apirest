@@ -1,8 +1,14 @@
 insert into sedes(nombre,direccion) values ('principal','caobos');
 
-insert into paquetes(nombre, precio, cant_clases_semana, status) values ('regular', '90000', '2',true);
-insert into paquetes(nombre, precio, cant_clases_semana, status) values ('special pass', '120000', '3',true);
-insert into paquetes(nombre, precio, cant_clases_semana, status) values ('full pass', '150000', '10',true);
+insert into tipo_persona(id, tipo_persona) values (1,'alumno');
+insert into tipo_persona(id, tipo_persona) values (2,'profesor');
+
+insert into paquetes(nombre, precio, cant_clases_estandar_semana, status, has_clases_crew_latina, has_clases_crew_urbana, is_venta_publico) values ('regular', '90000', '2',true, false, false, true);
+insert into paquetes(nombre, precio, cant_clases_estandar_semana, status, has_clases_crew_latina, has_clases_crew_urbana, is_venta_publico) values ('special pass', '120000', '3',true, false, false, true);
+insert into paquetes(nombre, precio, cant_clases_estandar_semana, status, has_clases_crew_latina, has_clases_crew_urbana, is_venta_publico) values ('full pass', '150000', '10',true, false, false, true);
+insert into paquetes(nombre, precio, cant_clases_estandar_semana, status, has_clases_crew_latina, has_clases_crew_urbana, is_venta_publico) values ('regular + crew latina', '60000', '2',true, true, false, false);
+insert into paquetes(nombre, precio, cant_clases_estandar_semana, status, has_clases_crew_latina, has_clases_crew_urbana, is_venta_publico) values ('regular + crew urbana', '60000', '2',true, false, true, false);
+insert into paquetes(nombre, precio, cant_clases_estandar_semana, status, has_clases_crew_latina, has_clases_crew_urbana, is_venta_publico) values ('full pass + crew latina + crew urbana', '150000', '10',true, true, true, false);
 
 insert into clases(nombre, status) values ('danza contemporanea multinivel', true);
 insert into clases(nombre, status) values ('urbano introductorio', true);
@@ -53,9 +59,9 @@ insert into horario_clase(dia,hora_inicio, hora_fin,status,id_clase) values ('vi
 insert into horario_clase(dia,hora_inicio, hora_fin,status,id_clase) values ('viernes', '20:00','21:00', true, '20');
 
 
-insert into personas (nombre, identificacion, fecha_nacimiento, fecha_ingreso, instagram, email, telefono, nombre_acudiente, telefono_acudiente, parentesco_acudiente, id_sede, enabled) values ('JHOCEL SUESCUN', '109050', '1997-01-03','2019-07-08','@jhocelsuescun','jhocel@gmail.com','320422','IRGEN TORRES','320312', 'madre','1',true);
-insert into personas (nombre, identificacion, fecha_nacimiento, fecha_ingreso, instagram, email, telefono, nombre_acudiente, telefono_acudiente, parentesco_acudiente, id_sede, enabled) values ('JUAN PEREZ', '1111', '1995-04-23','2021-05-08','@jUanperez4','juan_perez@gmail.com','31646','SOFIA DURAN','31646', 'tia','1',true);  
-insert into personas (nombre, identificacion, fecha_nacimiento, fecha_ingreso, instagram, email, telefono, id_sede, username, password, enabled ) values ('DANIEL RUDESS', '0000','1993-06-02','2019-09-15','@drudess','drudess@gmail.com','301467',  '1', 'drudess', '$2a$10$6vhsS.4nJcWdIESuwSzoQeOPNJIvkcoTQPV/qTHHVfSJQ3O/22mGq', true); 
+insert into personas (nombre, identificacion, fecha_nacimiento, fecha_ingreso, instagram, email, telefono, nombre_acudiente, telefono_acudiente, parentesco_acudiente, id_sede, enabled, id_tipo_persona) values ('JHOCEL SUESCUN', '109050', '1997-01-03','2019-07-08','@jhocelsuescun','jhocel@gmail.com','320422','IRGEN TORRES','320312', 'madre','1',true,1);
+insert into personas (nombre, identificacion, fecha_nacimiento, fecha_ingreso, instagram, email, telefono, nombre_acudiente, telefono_acudiente, parentesco_acudiente, id_sede, enabled, id_tipo_persona) values ('JUAN PEREZ', '1111', '1995-04-23','2021-05-08','@jUanperez4','juan_perez@gmail.com','31646','SOFIA DURAN','31646', 'tia','1',true,1);  
+insert into personas (nombre, identificacion, fecha_nacimiento, fecha_ingreso, instagram, email, telefono, id_sede, username, password, enabled, id_tipo_persona ) values ('DANIEL RUDESS', '0000','1993-06-02','2019-09-15','@drudess','drudess@gmail.com','301467',  '1', 'drudess', '$2a$10$6vhsS.4nJcWdIESuwSzoQeOPNJIvkcoTQPV/qTHHVfSJQ3O/22mGq', true,2); 
 
 insert into mensualidades(nombre_paquete, fecha_inicio, fecha_fin, precio_paquete, precio_pactado, id_persona) values ('regular','2021-08-16','2021-08-25','90000','75000', '1');
 insert into mensualidades(nombre_paquete, fecha_inicio, fecha_fin, precio_paquete, precio_pactado, id_persona) values ('regular','2021-09-16','2021-09-25','90000','75000', '1');

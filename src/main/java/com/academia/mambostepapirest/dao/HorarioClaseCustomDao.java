@@ -41,4 +41,6 @@ public class HorarioClaseCustomDao implements IHorarioClaseCustomDao {
 		return horarioClaseMapper.convertListObjectToListHorarioClaseDto(result);
 	}
 
+	
+
 }

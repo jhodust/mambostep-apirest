@@ -1,7 +1,14 @@
 package com.academia.mambostepapirest.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,20 +19,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="clases")
-public class Clase implements Serializable{
+@Table(name = "clases_dictadas")
+public class ClaseDictada implements Serializable{
 
 	/**
 	 * 
@@ -36,11 +37,14 @@ public class Clase implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String nombre;
+	private LocalDate fecha;
 	
-	private boolean status;
+	private String hora;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="id_profesor", foreignKey=@ForeignKey(name = "FK_clase_profesor"))
-	private Profesor profesor;
+	private String clase;
+	
+	private boolean impartida;
+	
+	@Column(name="id_clase")
+	private Long idClase;
 }

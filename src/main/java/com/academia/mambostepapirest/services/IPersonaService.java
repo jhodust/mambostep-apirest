@@ -21,4 +21,6 @@ public interface IPersonaService {
 	public PersonaDto searchPersonaByUsername(String username);
 	
 	public ControlAccesoDto searchAlumnoControlAcceso(String identificacion);
+	
+	
 }

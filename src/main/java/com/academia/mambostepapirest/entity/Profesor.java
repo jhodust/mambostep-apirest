@@ -2,6 +2,7 @@ package com.academia.mambostepapirest.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -23,5 +24,11 @@ public class Profesor extends Persona implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	@Column(name="valor_clase")
+	private double valorClase;
+	
+	@Column(name="pago_clases_mes")
+	private double pagoClasesMes; 
 
 }

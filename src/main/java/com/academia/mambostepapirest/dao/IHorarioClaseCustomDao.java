@@ -7,4 +7,6 @@ import java.util.List;
 public interface IHorarioClaseCustomDao {
 
 	public List<HorarioClaseDto> searchHorarioAlumno(String identificacion);
+	
+	
 }

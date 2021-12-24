@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.academia.mambostepapirest.dao.ISedeDao;
+import com.academia.mambostepapirest.dao.ITipoPersonaDao;
 import com.academia.mambostepapirest.dto.MensualidadDto;
 import com.academia.mambostepapirest.dto.PersonaDto;
+import com.academia.mambostepapirest.entity.TipoPersonas;
 import com.academia.mambostepapirest.entity.Persona;
 import com.academia.mambostepapirest.error.CustomException;
 
@@ -20,6 +22,9 @@ public class PersonaMapper implements IPersonaMapper {
 
 	@Autowired
 	private ISedeDao sedeDao;
+	
+	@Autowired
+	private ITipoPersonaDao tipoPersonaDao;
 	
 	@Override
 	public List<Persona> convertListPersonaDtoToListPersona(List<PersonaDto> listPersonasDto) {
@@ -57,6 +62,9 @@ public class PersonaMapper implements IPersonaMapper {
 		dto.setParentescoAcudiente(persona.getParentescoAcudiente());
 		dto.setIdSede(persona.getSede().getId());
 		dto.setNombreSede(persona.getSede().getNombre());
+		dto.setTipoPersona(persona.getTipoPersona().getTipoPersona());
+		dto.setProfesor(dto.getTipoPersona().equalsIgnoreCase(TipoPersonas.PROFESOR.toString()));
+		dto.setAlumno(dto.getTipoPersona().equalsIgnoreCase(TipoPersonas.ALUMNO.toString()));
 		return dto;
 	}
 
@@ -75,6 +83,8 @@ public class PersonaMapper implements IPersonaMapper {
 		persona.setTelefonoAcudiente(personaDto.getTelefonoAcudiente());
 		persona.setParentescoAcudiente(personaDto.getParentescoAcudiente());
 		persona.setSede(sedeDao.findById(personaDto.getIdSede()).orElseThrow(() -> new CustomException("no existe la sede en la base de datos")));
+		System.out.println("TIPO  a buscar:: " + (personaDto.isAlumno()? TipoPersonas.ALUMNO.toString() : TipoPersonas.PROFESOR.toString()));
+		persona.setTipoPersona(tipoPersonaDao.findTipoPersonaByTipo(personaDto.isAlumno()? TipoPersonas.ALUMNO.toString() : TipoPersonas.PROFESOR.toString()));
 		return persona;
 	}
 

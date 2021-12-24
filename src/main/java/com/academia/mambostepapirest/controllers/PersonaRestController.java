@@ -36,6 +36,8 @@ public class PersonaRestController {
 		return new ResponseEntity<>(personaService.savePersona(dto), HttpStatus.OK); 
 	}
 	
+	
+	
 	@GetMapping(value = "/search/{documento}")
 	public ResponseEntity<?> consultarDatos(@PathVariable String documento) {
 		return new ResponseEntity<>(personaService.searchPersona(documento), HttpStatus.OK);

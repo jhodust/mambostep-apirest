@@ -40,4 +40,10 @@ public class PersonaDto {
 	private Long idSede;
 	
 	private String nombreSede;
+	
+	private boolean profesor;
+	
+	private boolean alumno;
+	
+	private String tipoPersona;
 }
