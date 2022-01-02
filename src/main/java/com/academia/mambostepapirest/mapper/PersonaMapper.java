@@ -72,7 +72,7 @@ public class PersonaMapper implements IPersonaMapper {
 	public Persona convertPersonaDtoToPersona(PersonaDto personaDto) {
 		// TODO Auto-generated method stub
 		Persona persona= new Persona();
-		persona.setId(personaDto.getId() != null ? personaDto.getId() : null);
+		persona.setId(personaDto.getId());
 		persona.setNombre(personaDto.getNombre());
 		persona.setIdentificacion(personaDto.getIdentificacion());
 		persona.setFechaIngreso(personaDto.getFechaIngreso());

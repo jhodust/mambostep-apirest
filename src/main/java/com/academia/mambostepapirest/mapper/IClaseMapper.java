@@ -4,11 +4,12 @@ import java.util.List;
 
 import com.academia.mambostepapirest.dto.ClaseDto;
 import com.academia.mambostepapirest.entity.Clase;
+import com.academia.mambostepapirest.entity.Profesor;
+import com.academia.mambostepapirest.entity.Sede;
 
 public interface IClaseMapper {
 
 	public ClaseDto convertClaseToClaseDto(Clase clase);
-	public Clase convertClaseDtoToClase(ClaseDto claseDto);
+	public Clase convertClaseDtoToClase(ClaseDto claseDto, Profesor profesor, Sede sede);
 	public List<ClaseDto> convertListClaseToListClaseDto(List<Clase> listClases);
-	public List<Clase> convertListClaseDtoToListClase(List<ClaseDto> listClasesDto);
 }

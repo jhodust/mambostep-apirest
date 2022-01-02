@@ -23,6 +23,8 @@ public class PaqueteMapper implements IPaqueteMapper {
 		dto.setVentaPublico(paquete.isVentaPublico());
 		dto.setHasClasesCrewLatina(paquete.isHasClasesCrewLatina());
 		dto.setHasClasesCrewUrbano(paquete.isHasClasesCrewUrbano());
+		dto.setHasClasesIlimitadas(paquete.isHasClasesIlimitadas());
+		dto.setDiasDuracion(paquete.getDiasDuracion());
 		return dto;
 	}
 
@@ -38,6 +40,8 @@ public class PaqueteMapper implements IPaqueteMapper {
 		paquete.setVentaPublico(paqueteDto.isVentaPublico());
 		paquete.setHasClasesCrewLatina(paqueteDto.isHasClasesCrewLatina());
 		paquete.setHasClasesCrewUrbano(paqueteDto.isHasClasesCrewUrbano());
+		paquete.setHasClasesIlimitadas(paqueteDto.isHasClasesIlimitadas());
+		paquete.setDiasDuracion(paqueteDto.getDiasDuracion());
 		System.out.println("converttttttttttttttttt");
 		return paquete;
 	}

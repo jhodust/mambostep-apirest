@@ -19,5 +19,4 @@ public class HorarioClaseDto {
 	private String dia;
 	private String horaInicio;
 	private String horaFin;
-	private boolean status;
 }

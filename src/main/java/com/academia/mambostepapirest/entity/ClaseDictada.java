@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +26,8 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "clases_dictadas")
+@Table(name = "clases_dictadas",uniqueConstraints={
+		   @UniqueConstraint(columnNames={"id_clase", "fecha", "clase", "hora", "id_sede"}, name = "UK_clase_impartida")})
 public class ClaseDictada implements Serializable{
 
 	/**
@@ -47,4 +49,10 @@ public class ClaseDictada implements Serializable{
 	
 	@Column(name="id_clase")
 	private Long idClase;
+	
+	@Column(name="id_sede")
+	private Long idSede;
+	
+	@Column(name="clase_activa")
+	private boolean claseActiva;
 }

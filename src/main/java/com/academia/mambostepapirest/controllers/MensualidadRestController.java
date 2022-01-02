@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.academia.mambostepapirest.dto.MensualidadDto;
 import com.academia.mambostepapirest.services.IMensualidadService;
+import com.academia.mambostepapirest.utils.ApiResponseDto;
 
 @RestController
 @RequestMapping(value = "/mensualidad")
@@ -23,12 +24,21 @@ public class MensualidadRestController {
 	private IMensualidadService mensualidadService;
 	
 	@PostMapping(value = "/registrar")
-	public void registrarPagoMensualidad(@RequestBody MensualidadDto mensualidadDto) {
-		mensualidadService.registrarMensualidad(mensualidadDto);
+	public ResponseEntity<?> registrarPagoMensualidad(@RequestBody MensualidadDto mensualidadDto) {
+		return mensualidadService.registrarMensualidad(mensualidadDto);
 	}
 	
 	@GetMapping(value = "/searchLast/{documento}")
 	public ResponseEntity<?> consultarHistoricoMensualidades(@PathVariable String documento) {
 		return new ResponseEntity<>(mensualidadService.consultarHistoricoAlumno(documento), HttpStatus.OK);
 	}
+	
+	
+	@GetMapping(value = "/dateFechaFinMensualidad/{fechaInicioMensualidad}/{diasHabilesMensualidad}")
+	public ResponseEntity<?> consultarHistoricoMensualidades(@PathVariable String fechaInicioMensualidad,
+			@PathVariable String diasHabilesMensualidad) {
+		return new ResponseEntity<>(ApiResponseDto.ok(mensualidadService.generateFechaFinMensualidad(fechaInicioMensualidad, diasHabilesMensualidad), ""), HttpStatus.OK);
+	}
+	
+	
 }

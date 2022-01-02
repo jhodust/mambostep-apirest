@@ -9,7 +9,11 @@ import org.springframework.stereotype.Service;
 import com.academia.mambostepapirest.dao.IPaqueteDao;
 import com.academia.mambostepapirest.dto.PaqueteDto;
 import com.academia.mambostepapirest.entity.Paquete;
+import com.academia.mambostepapirest.error.CustomException;
 import com.academia.mambostepapirest.mapper.IPaqueteMapper;
+import com.academia.mambostepapirest.utils.ApiResponseDto;
+import com.academia.mambostepapirest.utils.MessagesError;
+import com.academia.mambostepapirest.utils.MessagesSuccess;
 
 @Service
 public class PaqueteServiceImpl implements IPaqueteService {
@@ -27,18 +31,17 @@ public class PaqueteServiceImpl implements IPaqueteService {
 	}
 
 	@Override
-	public ResponseEntity<?> save(PaqueteDto dto) {
+	public ResponseEntity<?> savePaquete(PaqueteDto paqueteDto) {
 		// TODO Auto-generated method stub
-		Paquete paquete=paqueteMapper.convertPaqueteDtoToPaquete(dto);
-		System.out.println(paquete.getCantidadClasesEstandarSemana());
-		System.out.println(paquete.getNombre());
-		System.out.println(paquete.getPrecio());
-		System.out.println(paquete.isHasClasesCrewLatina());
-		System.out.println(paquete.isHasClasesCrewUrbano());
-		System.out.println(paquete.isVentaPublico());
-		System.out.println(paquete.isStatus());
-		System.out.println(paquete.getId());
-		return ResponseEntity.ok(paqueteDao.save(paquete));
+		Paquete paquete=paqueteMapper.convertPaqueteDtoToPaquete(paqueteDto);
+		paqueteDao.save(paquete);
+		return ResponseEntity.ok(ApiResponseDto.ok(MessagesSuccess.REGISTRO_PAQUETE));
+	}
+
+	@Override
+	public Paquete findPaqueteById(Long idPaquete) {
+		// TODO Auto-generated method stub
+		return paqueteDao.findById(idPaquete).orElseThrow(() -> new CustomException(MessagesError.PAQUETE_NO_ENCONTRADO_POR_ID ));
 	}
 
 }

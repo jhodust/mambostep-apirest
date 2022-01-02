@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import com.academia.mambostepapirest.dto.AlumnoDto;
 
 import com.academia.mambostepapirest.services.IAlumnoService;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +28,16 @@ public class AlumnoRestController {
 	
 	@PostMapping(value = "/save", produces = "application/json")
 	public ResponseEntity<?> saveAlumno(@RequestBody AlumnoDto dto){
-		alumnoService.saveAlumno(dto);
-		return new ResponseEntity<>(HttpStatus.OK); 
+		return alumnoService.saveAlumno(dto);
+	}
+	
+	@GetMapping(value = "/all", produces = "application/json")
+	public ResponseEntity<?> listAlumnos(){
+		return alumnoService.listAlumnos(); 
+	}
+	
+	@GetMapping(value = "/find/{idPersona}")
+	public ResponseEntity<?> findAlumnoById(@PathVariable("idPersona") Long idPersona){
+		return alumnoService.searchAlumnoById(idPersona);
 	}
 }

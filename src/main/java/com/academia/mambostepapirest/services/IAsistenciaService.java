@@ -1,6 +1,8 @@
 package com.academia.mambostepapirest.services;
 
+import org.springframework.http.ResponseEntity;
+
 public interface IAsistenciaService {
 
-	public void tomarAsistencia(String documento);
+	public ResponseEntity<?> tomarAsistencia(String documento, String idSede);
 }

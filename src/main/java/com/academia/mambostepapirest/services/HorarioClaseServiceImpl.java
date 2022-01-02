@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.academia.mambostepapirest.dao.IHorarioClaseCustomDao;
 import com.academia.mambostepapirest.dao.IHorarioClaseDao;
 import com.academia.mambostepapirest.dto.HorarioClaseDto;
+import com.academia.mambostepapirest.entity.Clase;
+import com.academia.mambostepapirest.entity.Horario;
+import com.academia.mambostepapirest.mapper.IHorarioClaseMapper;
 import com.academia.mambostepapirest.utils.MessagesError;
 import com.academia.mambostepapirest.utils.ApiResponseDto;
 
@@ -21,6 +24,9 @@ public class HorarioClaseServiceImpl implements IHorarioClaseService {
 	@Autowired
 	private IHorarioClaseDao horarioClaseDao;
 	
+	@Autowired
+	private IHorarioClaseMapper horarioClaseMapper;
+	
 	@Override
 	public List<HorarioClaseDto> searchHorarioAlumno(String identificacion) {
 		// TODO Auto-generated method stub
@@ -28,10 +34,23 @@ public class HorarioClaseServiceImpl implements IHorarioClaseService {
 	}
 
 	@Override
-	public ResponseEntity<?> validateHoursClass(String dia, String horaInicio, String horaFin) {
+	public ResponseEntity<?> validateHoursClass(String dia, String horaInicio, String horaFin, Long idSede) {
 		// TODO Auto-generated method stub
-		boolean isClassAvailable=horarioClaseDao.validateAvailableHoursClass(dia, horaInicio, horaFin);
+		boolean isClassAvailable=horarioClaseDao.validateAvailableHoursClass(dia, horaInicio, horaFin, idSede);
 		return ResponseEntity.ok(ApiResponseDto.ok(isClassAvailable, !isClassAvailable ? MessagesError.HORARIO_NO_DISPONIBLE : null));
+	}
+
+	@Override
+	public void saveHorarioClase(List<HorarioClaseDto> listHorarioClaseDto, Clase clase) {
+		// TODO Auto-generated method stub
+		List<Horario> listHorarioClase=horarioClaseMapper.convertListHorarioClaseDtoToListHorarioClase(listHorarioClaseDto, clase);
+		horarioClaseDao.saveAll(listHorarioClase);
+	}
+
+	@Override
+	public void deleteHorarioClase(Long idClase) {
+		// TODO Auto-generated method stub
+		horarioClaseDao.deleteHorarioClaseByClase(idClase);
 	}
 
 }

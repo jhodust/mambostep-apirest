@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.lang.Nullable;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,8 +36,12 @@ public class Paquete implements Serializable{
 	
 	private String nombre;
 	
+	@Nullable
 	@Column(name = "cant_clases_estandar_semana")
 	private String cantidadClasesEstandarSemana;
+	
+	@Column(name = "dias_duracion")
+	private int diasDuracion;
 	
 	private String precio;
 	
@@ -44,6 +50,9 @@ public class Paquete implements Serializable{
 	
 	@Column(name = "has_clases_crew_urbana")
 	private boolean hasClasesCrewUrbano;
+	
+	@Column(name = "has_clases_ilimitadas")
+	private boolean hasClasesIlimitadas;
 	
 	private boolean status;
 	

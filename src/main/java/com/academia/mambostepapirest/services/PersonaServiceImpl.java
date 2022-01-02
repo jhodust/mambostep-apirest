@@ -1,5 +1,6 @@
 package com.academia.mambostepapirest.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -7,10 +8,14 @@ import com.academia.mambostepapirest.dao.IHorarioClaseCustomDao;
 import com.academia.mambostepapirest.dao.IPersonaCustomDao;
 import com.academia.mambostepapirest.dao.IPersonaDao;
 import com.academia.mambostepapirest.mapper.IPersonaMapper;
+import com.academia.mambostepapirest.utils.ApiResponseDto;
+import com.academia.mambostepapirest.utils.MessagesError;
+import com.academia.mambostepapirest.utils.MessagesSuccess;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -23,6 +28,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.academia.mambostepapirest.dto.ControlAccesoDto;
 import com.academia.mambostepapirest.dto.PersonaDto;
 import com.academia.mambostepapirest.entity.Persona;
+import com.academia.mambostepapirest.entity.Rol;
+import com.academia.mambostepapirest.error.CustomException;
 
 @Service
 public class PersonaServiceImpl implements IPersonaService, UserDetailsService {
@@ -32,6 +39,7 @@ public class PersonaServiceImpl implements IPersonaService, UserDetailsService {
 	
 	@Autowired
 	private IPersonaDao personaDao;
+	
 	
 	@Autowired
 	private IPersonaCustomDao personaCustomDao;
@@ -51,22 +59,21 @@ public class PersonaServiceImpl implements IPersonaService, UserDetailsService {
 
 	
 
-	@Override
-	public PersonaDto savePersona(PersonaDto dto) {
-		// TODO Auto-generated method stub
-		System.out.println("PPPPPPPPPPPPPP ID: " + dto.getId());
-		Persona p= personaMapper.convertPersonaDtoToPersona(dto);
-		personaDao.save(p);
-		System.out.println("PPPPPPPPPPPPPP ID: " + p.getId());
-		return personaMapper.convertPersonaToPersonaDto(p);
-	}
 
 	@Override
-	public PersonaDto searchPersona(String documento) {
+	public PersonaDto searchPersonaDto(String documento) {
 		// TODO Auto-generated method stub
-		return personaCustomDao.consultarDatosBasicosPersona(documento);
+		PersonaDto personaSearched=personaCustomDao.consultarDatosBasicosPersona(documento); 
+		if(personaSearched==null) {
+			throw new CustomException(MessagesError.PERSONA_NO_ENCONTRADA_POR_DOCUMENTO);
+		}
+		return personaSearched;
 	}
-
+	
+	public Persona searchPersona(String documento) {
+		// TODO Auto-generated method stub
+		return personaDao.findByIdentificacion(documento);
+	}
 
 
 	@Override
@@ -121,6 +128,22 @@ public class PersonaServiceImpl implements IPersonaService, UserDetailsService {
 			dto.setHorario(horarioClaseCustomDao.searchHorarioAlumno(identificacion));
 		}
 		return dto;
+	}
+
+
+
+	@Override
+	public Persona findPersonaById(Long id) {
+		// TODO Auto-generated method stub
+		return personaDao.findById(id).orElseThrow(() -> new CustomException(MessagesError.PERSONA_NO_ENCONTRADA_POR_ID));
+	}
+
+
+
+	@Override
+	public ResponseEntity<?> searchPersonaById(Long idPersona) {
+		// TODO Auto-generated method stub
+		return ResponseEntity.ok(ApiResponseDto.ok(personaMapper.convertPersonaToPersonaDto(this.findPersonaById(idPersona))));
 	}
 
 }

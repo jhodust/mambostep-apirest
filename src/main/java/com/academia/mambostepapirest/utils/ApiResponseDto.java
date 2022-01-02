@@ -1,5 +1,7 @@
 package com.academia.mambostepapirest.utils;
 
+import org.springframework.http.HttpStatus;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 
@@ -15,6 +17,7 @@ public class ApiResponseDto<T> {
 	private T data;
 	private String message;
 	private StackTraceElement[] trace;
+	private int status;
 	public ApiResponseDto(T data) {
 		this.data = data;
 	}
@@ -29,6 +32,7 @@ public class ApiResponseDto<T> {
 		return ApiResponseDto.<String>builder()
 				.data("")
 				.message("success")
+				.status(HttpStatus.OK.value())
 				.build();
 	}
 	
@@ -36,6 +40,7 @@ public class ApiResponseDto<T> {
 		return ApiResponseDto.<String>builder()
 				.data("")
 				.message(mensaje)
+				.status(HttpStatus.OK.value())
 				.build();
 	}
 
@@ -44,6 +49,7 @@ public class ApiResponseDto<T> {
 		return ApiResponseDto.<T>builder()
 				.data(data)
 				.message("success")
+				.status(HttpStatus.OK.value())
 				.build();
 	}
 	
@@ -51,6 +57,7 @@ public class ApiResponseDto<T> {
 		return ApiResponseDto.<T>builder()
 				.data(data)
 				.message(mensaje)
+				.status(HttpStatus.OK.value())
 				.build();
 	}
 	

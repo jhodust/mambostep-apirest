@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.academia.mambostepapirest.dao.IPersonaDao;
 import com.academia.mambostepapirest.dto.MensualidadDto;
 import com.academia.mambostepapirest.entity.Mensualidad;
+import com.academia.mambostepapirest.entity.Persona;
 import com.academia.mambostepapirest.error.CustomException;
 
 @Component
@@ -32,11 +33,12 @@ public class MensualidadMapper implements IMensualidadMapper {
 		dto.setPrecioPactado(mensualidad.getPrecioPactado());
 		dto.setObservaciones(mensualidad.getObservaciones());
 		dto.setIdPersona(mensualidad.getPersona().getId());
+		dto.setHasClasesIlimitadas(mensualidad.isHasClasesIlimitadas());
 		return dto;
 	}
 
 	@Override
-	public Mensualidad convertMensualidadDtoToMensualidad(MensualidadDto mensualidadDto) {
+	public Mensualidad convertMensualidadDtoToMensualidad(MensualidadDto mensualidadDto , Persona persona) {
 		// TODO Auto-generated method stub
 		Mensualidad mensualidad = new Mensualidad();
 		mensualidad.setId(mensualidadDto.getId());
@@ -46,7 +48,8 @@ public class MensualidadMapper implements IMensualidadMapper {
 		mensualidad.setPrecioPaquete(mensualidadDto.getPrecioPaquete());
 		mensualidad.setPrecioPactado(mensualidadDto.getPrecioPactado());
 		mensualidad.setObservaciones(mensualidadDto.getObservaciones());
-		mensualidad.setPersona(personaDao.findById(mensualidadDto.getIdPersona()).orElseThrow(() -> new CustomException("no se encontró la persona en la base de datos")));
+		mensualidad.setPersona(persona);
+		mensualidad.setHasClasesIlimitadas(mensualidadDto.isHasClasesIlimitadas());
 		return mensualidad;
 	}
 
@@ -60,15 +63,7 @@ public class MensualidadMapper implements IMensualidadMapper {
 		return listMensualidadesDto;
 	}
 
-	@Override
-	public List<Mensualidad> convertListMensualidadesDtoToListMensualidades(List<MensualidadDto> listMensualidadesDto) {
-		// TODO Auto-generated method stub
-		List<Mensualidad> listMensualidades = new ArrayList<Mensualidad>();
-		for(MensualidadDto mensualidadDto: listMensualidadesDto) {
-			listMensualidades.add(this.convertMensualidadDtoToMensualidad(mensualidadDto));
-		}
-		return listMensualidades;
-	}
+	
 
 	@Override
 	public List<MensualidadDto> convertListObjectToListMensualidadDto(List<Object[]> listObject) {
@@ -96,7 +91,9 @@ public class MensualidadMapper implements IMensualidadMapper {
 		dto.setPrecioPactado(String.valueOf(object[5]));
 		dto.setObservaciones(String.valueOf(object[6]));
 		dto.setClases(String.valueOf(object[7]));
-		dto.setIdPersona(Long.parseLong(String.valueOf(object[8])));
+		dto.setHasClasesIlimitadas((Boolean) object[8]);
+		dto.setIdPersona(Long.parseLong(String.valueOf(object[9])));
+		
 		return dto;
 	}
 

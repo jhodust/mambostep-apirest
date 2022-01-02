@@ -3,7 +3,7 @@ package com.academia.mambostepapirest.entity;
 import lombok.NoArgsConstructor;
 
 import lombok.AllArgsConstructor;
-
+import lombok.Builder;
 import lombok.Setter;
 
 import lombok.Getter;
@@ -28,6 +28,7 @@ import javax.persistence.ManyToOne;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Horario implements Serializable{
 
 	/**
@@ -47,7 +48,6 @@ public class Horario implements Serializable{
 	@Column(name = "hora_fin")
 	private String horaFin;
 	
-	private boolean status;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="id_clase", foreignKey=@ForeignKey(name = "FK_horario_clase"))

@@ -9,10 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.academia.mambostepapirest.dto.ClaseDto;
+import com.academia.mambostepapirest.dto.PaqueteDto;
 import com.academia.mambostepapirest.services.IHorarioClaseService;
 
 @RestController
@@ -29,13 +33,17 @@ public class HorarioClaseRestController {
 	}
 	
 	@GetMapping(value = "/validateAvailableHours")
-	public ResponseEntity<?> validateAvailableHours(@RequestParam(name = "dia",required = false) String dia,
-			@RequestParam(name = "horaInicio",required = false) String horaInicio,
-			@RequestParam(name = "horaFin",required = false) String horaFin){
+	public ResponseEntity<?> validateAvailableHours(@RequestParam(name = "dia",required = true) String dia,
+			@RequestParam(name = "horaInicio",required = true) String horaInicio,
+			@RequestParam(name = "horaFin",required = true) String horaFin,
+			@RequestParam(name = "idSede",required = true) Long idSede){
 		System.out.println("dia: " + dia);
 		System.out.println("hora inicio: " + horaInicio);
 		System.out.println("horaFin: " + horaFin);
-		return horarioClaseService.validateHoursClass(dia, horaInicio, horaFin);
+		System.out.println("idSede: " + idSede);
+		return horarioClaseService.validateHoursClass(dia, horaInicio, horaFin, idSede);
 	}
+	
+	
 	
 }

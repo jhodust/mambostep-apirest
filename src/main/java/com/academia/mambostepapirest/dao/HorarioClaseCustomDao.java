@@ -27,7 +27,7 @@ public class HorarioClaseCustomDao implements IHorarioClaseCustomDao {
 		// TODO Auto-generated method stub
 		StringBuilder sb=new StringBuilder();
 		sb.append("select hc.id as idHorario, hc.dia, hc.hora_inicio, hc.hora_fin,")
-		.append(" hc.status, cla.id as idClase, cla.nombre from mensualidades men")
+		.append("  cla.id as idClase, cla.nombre from mensualidades men")
 		.append(" join mensualidad_clases mc on men.id=mc.id_mensualidad")
 		.append(" join personas per on men.id_persona=per.id")
 		.append(" join clases cla on mc.id_clase=cla.id")

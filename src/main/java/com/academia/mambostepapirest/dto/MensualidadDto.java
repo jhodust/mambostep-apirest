@@ -35,4 +35,5 @@ public class MensualidadDto {
 	private Long idPersona;
 	private List<Long> idsClases;
 	private String clases;
+	private boolean hasClasesIlimitadas;
 }

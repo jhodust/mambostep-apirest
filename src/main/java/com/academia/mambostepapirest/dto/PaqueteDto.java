@@ -16,10 +16,12 @@ public class PaqueteDto {
 	private String nombre;
 	private String cantidadClasesEstandarSemana;
 	private String precio;
+	private boolean hasClasesIlimitadas;
 	private boolean hasClasesCrewLatina;
 	private boolean hasClasesCrewUrbano;
 	private boolean status;
 	private boolean isVentaPublico;
+	private int diasDuracion;
 	
 	
 	

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.academia.mambostepapirest.dao.IClaseDao;
 import com.academia.mambostepapirest.dao.IHorarioClaseDao;
 import com.academia.mambostepapirest.dto.HorarioClaseDto;
+import com.academia.mambostepapirest.entity.Clase;
 import com.academia.mambostepapirest.entity.Horario;
 import com.academia.mambostepapirest.error.CustomException;
 
@@ -26,24 +27,21 @@ public class HorarioClaseMapper implements IHorarioClaseMapper {
 		dto.setDia(horario.getDia());
 		dto.setHoraFin(horario.getHoraFin());
 		dto.setHoraInicio(horario.getHoraInicio());
-		dto.setStatus(horario.isStatus());
 		dto.setIdClase(horario.getClase().getId());
 		dto.setClase(horario.getClase().getNombre());
 		return dto;
 	}
 
 	@Override
-	public Horario convertHorarioClaseDtoToHorarioClase(HorarioClaseDto horarioClaseDto) {
+	public Horario convertHorarioClaseDtoToHorarioClase(HorarioClaseDto horarioClaseDto, Clase clase) {
 		// TODO Auto-generated method stub
-		Horario horario=new Horario();
-		horario.setId(horarioClaseDto.getId());
-		horario.setDia(horarioClaseDto.getDia());
-		horario.setHoraInicio(horario.getHoraInicio());
-		horario.setHoraFin(horario.getHoraFin());
-		horario.setStatus(horarioClaseDto.isStatus());
-		horario.setClase(claseDao.findById(horarioClaseDto.getIdClase()).orElseThrow(() -> new CustomException("no se encontró la clase en la base de datos")));
-		
-		return horario;
+		Horario horarioClase= new Horario();
+		horarioClase.setId(horarioClaseDto.getId());
+		horarioClase.setDia(horarioClaseDto.getDia());
+		horarioClase.setHoraInicio(horarioClaseDto.getHoraInicio());
+		horarioClase.setHoraFin(horarioClaseDto.getHoraFin());
+		horarioClase.setClase(clase);
+		return horarioClase;
 	}
 
 	@Override
@@ -57,11 +55,11 @@ public class HorarioClaseMapper implements IHorarioClaseMapper {
 	}
 
 	@Override
-	public List<Horario> convertListHorarioClaseDtoToListHorarioClase(List<HorarioClaseDto> listHorarioClaseDto) {
+	public List<Horario> convertListHorarioClaseDtoToListHorarioClase(List<HorarioClaseDto> listHorarioClaseDto, Clase clase) {
 		// TODO Auto-generated method stub
 		List<Horario> listHorarioClase=new ArrayList<Horario>();
 		for(HorarioClaseDto horarioClaseDto: listHorarioClaseDto) {
-			listHorarioClase.add(this.convertHorarioClaseDtoToHorarioClase(horarioClaseDto));
+			listHorarioClase.add(this.convertHorarioClaseDtoToHorarioClase(horarioClaseDto, clase));
 		}
 		return listHorarioClase;
 	}
@@ -74,9 +72,8 @@ public class HorarioClaseMapper implements IHorarioClaseMapper {
 		dto.setDia(String.valueOf(object[1]));
 		dto.setHoraInicio(String.valueOf(object[2]));
 		dto.setHoraFin(String.valueOf(object[3]));
-		dto.setStatus((boolean) object[4]);
-		dto.setIdClase(Long.parseLong(String.valueOf(object[5])));
-		dto.setClase(String.valueOf(object[6]));
+		dto.setIdClase(Long.parseLong(String.valueOf(object[4])));
+		dto.setClase(String.valueOf(object[5]));
 		return dto;
 	}
 

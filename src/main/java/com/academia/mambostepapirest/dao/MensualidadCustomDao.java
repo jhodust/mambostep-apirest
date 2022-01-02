@@ -44,8 +44,8 @@ public class MensualidadCustomDao implements IMensualidadCustomDao {
 		
 		StringBuilder query = new StringBuilder()
 				.append("insert into mensualidades")
-				.append(" (fecha_inicio, fecha_fin, nombre_paquete, observaciones, precio_paquete, precio_pactado, id_persona)  ")
-				.append(" VALUES (?,?,?,?,?,?,?)");
+				.append(" (fecha_inicio, fecha_fin, nombre_paquete, observaciones, precio_paquete, precio_pactado, id_persona, has_clases_ilimitadas)  ")
+				.append(" VALUES (?,?,?,?,?,?,?,?)");
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 
@@ -63,6 +63,7 @@ public class MensualidadCustomDao implements IMensualidadCustomDao {
 				ps.setString(5, mensualidadDto.getPrecioPaquete());
 				ps.setString(6, mensualidadDto.getPrecioPactado());
 				ps.setLong(7, mensualidadDto.getIdPersona());
+				ps.setBoolean(8, mensualidadDto.isHasClasesIlimitadas());
 				return ps;
 			}
 
@@ -78,7 +79,7 @@ public class MensualidadCustomDao implements IMensualidadCustomDao {
 		StringBuilder query = new StringBuilder()
 				.append("select men.id as id_mensualidad, men.fecha_inicio, men.fecha_fin, ")
 				.append("  men.nombre_paquete, men.precio_paquete, men.precio_pactado, COALESCE(men.observaciones,'') as observaciones,")
-				.append(" STRING_AGG(cla.nombre,',') as clases,  ")
+				.append(" STRING_AGG(cla.nombre,',') as clases, men.has_clases_ilimitadas,  ")
 				.append(" per.id as id_persona")
 				.append(" from mensualidades men")
 				.append(" join personas per on men.id_persona=per.id")
